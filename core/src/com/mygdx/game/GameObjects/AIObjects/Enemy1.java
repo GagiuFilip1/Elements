@@ -1,6 +1,5 @@
 package com.mygdx.game.GameObjects.AIObjects;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
@@ -12,10 +11,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
-
 import com.mygdx.game.Abstracts.AIObjects;
 import com.mygdx.game.GameObjects.Player;
-
 
 public class Enemy1 extends AIObjects
 {
@@ -337,23 +334,22 @@ public class Enemy1 extends AIObjects
             }
             if(id == 1)
             {
-
                 if(i1 <=2){
-                    random = 70;//ThreadLocalRandom.current().nextInt(10, 80);
+                    random = (float )(Math.random() * 80 + 20);
                     i1++;
                 }
-                position =GetPosition(1);		positionChanger = random * Gdx.graphics.getDeltaTime()*1.5f;
-                setPosition(position += positionChanger , GetPosition(2));
+                position =GetPosition(1);		positionChanger = position + random * Gdx.graphics.getDeltaTime()*1.5f;
+                setPosition(positionChanger , GetPosition(2));
                 AnimationsDraw(batch ,(int)GetPosition(1), (int)GetPosition(2) , 5);
             }
             else
             {
                 if(i1 <=2){
-                    random =80;// ThreadLocalRandom.current().nextInt(10, 80);
+                    random = (float )(Math.random() * 80 + 20);
                     i1++;
                 }
-                position =GetPosition(1);		positionChanger = random * Gdx.graphics.getDeltaTime()*1.5f;
-                setPosition(position -= positionChanger , GetPosition(2));
+                position =GetPosition(1);		positionChanger = position - random * Gdx.graphics.getDeltaTime()*1.5f;
+                setPosition(positionChanger , GetPosition(2));
                 AnimationsDraw(batch ,(int)GetPosition(1), (int)GetPosition(2) , 5);
             }
             batch.end();
