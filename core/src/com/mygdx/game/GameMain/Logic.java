@@ -1,5 +1,7 @@
 package com.mygdx.game.GameMain;
-
+/**
+ * Created by Filip
+ */
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,6 +19,7 @@ import com.mygdx.game.GameObjects.AIObjects.AI_Logic;
 
 class Logic
 {
+    private DialogueHandler Dialog = new DialogueHandler();
     void RunGameLogic
             (
                     Player player, Control keyBindings, AI_Logic AI_log,

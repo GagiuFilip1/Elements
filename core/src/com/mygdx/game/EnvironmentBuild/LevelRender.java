@@ -1,5 +1,7 @@
 package com.mygdx.game.EnvironmentBuild;
-
+/**
+ * Created by Filip
+ */
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -10,8 +12,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.mygdx.game.Abstracts.ObjectsInGame;
-
-import com.mygdx.game.GameMain.ReplyHandler;
 import com.mygdx.game.GameObjects.Brick;
 import com.mygdx.game.GameObjects.Player;
 
@@ -19,7 +19,6 @@ public class LevelRender
 {
     private int H , W , alg = 0;
     private int[][] Map;
-    private ReplyHandler Reply;
     private ArrayList<ObjectsInGame> objectsList;
     private static Texture texture = new Texture(Gdx.files.internal("desktop/assets/Backgrounds/FireBack.jpg"));
     public static Sprite sprite = new Sprite(texture);
@@ -27,7 +26,6 @@ public class LevelRender
 
     public LevelRender()
     {
-        Reply = new ReplyHandler();
         objectsList = new ArrayList<ObjectsInGame>();
     }
 
@@ -58,7 +56,6 @@ public class LevelRender
                 }
                 alg++;
             }
-            Reply.GetReplyFor("Hero" , 1);
         }
         int width = -1000 , height = 0;
         for(int i = 0 ;i < H;i++)

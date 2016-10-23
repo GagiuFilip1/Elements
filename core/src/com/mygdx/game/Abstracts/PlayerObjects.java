@@ -1,5 +1,7 @@
 package com.mygdx.game.Abstracts;
-
+/**
+ * Created by Filip
+ */
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;

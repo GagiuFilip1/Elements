@@ -1,5 +1,7 @@
 package com.mygdx.game.GameObjects;
-
+/**
+ * Created by Filip
+ */
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;

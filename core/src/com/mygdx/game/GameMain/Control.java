@@ -9,7 +9,9 @@ import com.badlogic.gdx.Input;
 import com.mygdx.game.Abstracts.AIObjects;
 import com.mygdx.game.GameObjects.Player;
 import com.mygdx.game.GameObjects.AIObjects.Enemy1;
-
+/**
+ * Created by Filip
+ */
 class Control
 {
     private int animationID = 0 , playerPosition = 0;

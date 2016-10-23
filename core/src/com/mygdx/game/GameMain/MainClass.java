@@ -1,5 +1,7 @@
 package com.mygdx.game.GameMain;
-
+/**
+ * Created by Filip
+ */
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -25,6 +27,7 @@ public class MainClass extends ApplicationAdapter {
 	private OrthographicCamera camera;
 	private Player player;
 	private Logic Run;
+	private DialogueHandler Dialog;
 	private Control KeyBindings;
 	private AI_Logic AI_log = new AI_Logic();
 	private LevelRender Render;
@@ -43,7 +46,6 @@ public class MainClass extends ApplicationAdapter {
 		while(tokens.hasMoreTokens())
 		{
 			String type = tokens.nextToken();
-
 			if(!stop)
 			{
 				W++;
@@ -107,6 +109,9 @@ public class MainClass extends ApplicationAdapter {
 		batch = new  SpriteBatch();
 		Render = new LevelRender();
 		Render.GetLevelData(1);
+		Dialog = new DialogueHandler();
+		Dialog.GetDialogueLines(3,8,11,12);
+		Dialog.BuildDialogue("Hero" , "Npc1");
 		objectsList = Render.GetObjectsList();
 		KeyBindings = new Control();
 		Run = new Logic();
