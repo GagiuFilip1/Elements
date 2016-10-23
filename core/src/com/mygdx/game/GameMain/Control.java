@@ -16,6 +16,13 @@ class Control
 {
     private int animationID = 0 , playerPosition = 0;
     private boolean jumpID = false;
+
+    /**
+     *
+     * @param player (our player)
+     * @param enemyList (all AI's that can be found in game)
+     * Set(player, enemyList) get the KeyBindings and how they influence player and AI's;
+     */
     void Set(Player player, ArrayList<AIObjects> enemyList)
     {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT))

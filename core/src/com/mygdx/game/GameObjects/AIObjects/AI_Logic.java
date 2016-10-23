@@ -11,6 +11,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Abstracts.AIObjects;
 import com.mygdx.game.GameObjects.Player;
 
+/**
+ * Universal AI_logic
+ */
 public class AI_Logic
 {
     private float time = 0;

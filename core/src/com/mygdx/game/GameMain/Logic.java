@@ -1,10 +1,5 @@
 package com.mygdx.game.GameMain;
-/**
- * Created by Filip
- */
-
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -16,10 +11,16 @@ import com.mygdx.game.Abstracts.ObjectsInGame;
 import com.mygdx.game.GameObjects.Brick;
 import com.mygdx.game.GameObjects.Player;
 import com.mygdx.game.GameObjects.AIObjects.AI_Logic;
+/**
+ * Created by Filip
+ */
 
 class Logic
 {
-    private DialogueHandler Dialog = new DialogueHandler();
+    /**
+     *
+     *All game logic , collision , camera Update ,AI_logic,and the KeyBindings
+     */
     void RunGameLogic
             (
                     Player player, Control keyBindings, AI_Logic AI_log,
@@ -33,22 +34,20 @@ class Logic
         if(player.hits(temp) != -1){
             player.action(1,0, 10);
         }
-        for(Iterator<ObjectsInGame> i = objectsList.iterator(); i.hasNext();)
-        {
-            Brick t = (Brick) i.next();
-            switch (player.hits(t.getHitBox()))
-            {
-                case 1 :
-                    player.action(1 ,0 ,t.getHitBox().y + t.getHitBox().height);
+        for (ObjectsInGame anObjectsList : objectsList) {
+            Brick t = (Brick) anObjectsList;
+            switch (player.hits(t.getHitBox())) {
+                case 1:
+                    player.action(1, 0, t.getHitBox().y + t.getHitBox().height);
                     break;
-                case 2 :
-                    player.action(2 ,t.getHitBox().x + t.getHitBox().width -1 ,0);
+                case 2:
+                    player.action(2, t.getHitBox().x + t.getHitBox().width - 1, 0);
                     break;
-                case 3 :
-                    player.action(3 ,t.getHitBox().x - t.getHitBox().width + 1 ,0);
+                case 3:
+                    player.action(3, t.getHitBox().x - t.getHitBox().width + 1, 0);
                     break;
-                case 4 :
-                    player.action(4 ,0 ,t.getHitBox().y - t.getHitBox().height);
+                case 4:
+                    player.action(4, 0, t.getHitBox().y - t.getHitBox().height);
                     break;
             }
         }

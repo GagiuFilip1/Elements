@@ -29,6 +29,10 @@ public class LevelRender
         objectsList = new ArrayList<ObjectsInGame>();
     }
 
+    /**
+     *
+     *  GetLevelData(level) get the map structure for a specific level but is not building it
+     */
     public void GetLevelData(int level)
     {
         GetLevelBorders();
@@ -72,6 +76,12 @@ public class LevelRender
             height += 64;
         }
     }
+
+    /**
+     *
+     * Build(batch, list) Build the environment objects that can be found is list
+     *      You may use GetLevelData(Level) first;
+     */
     public void Build(SpriteBatch batch , ArrayList<ObjectsInGame> list)
     {
            for (ObjectsInGame t : list) {
@@ -101,6 +111,11 @@ public class LevelRender
             }
         }
     }
+
+    /**
+     *
+     * @return the objects list created in GetLevelData(level), use it as parameter in Build(batch,list);
+     */
     public ArrayList<ObjectsInGame> GetObjectsList()
     {
         return objectsList;

@@ -12,6 +12,13 @@ package com.mygdx.game.GameMain;
     {
         ReplyText = new ReplyHandler();
     }
+
+    /**
+     *
+     * @param CharId1 Name of the first character of the dialog
+     * @param CharId2 Name of the second character of the dialog
+     *                BuildDialog("c1" ,"c2") create the dialog between the characters
+     */
     void BuildDialogue(String CharId1 , String CharId2)
     {
 
@@ -34,6 +41,13 @@ package com.mygdx.game.GameMain;
             } while ((indexC1 < (Lines1.length - 1)) && (indexC2 < (Lines2.length - 1)));
         }
     }
+
+    /**
+     *
+     * @param a and @param b , get the lines for the first character from a to b
+     * @param x and @param y , get the lines for the second character from x to y
+     *          GetDialogueLines( 5, 8 , 3 ,6) that means...char1 will get the lines 5 ,6 ,7, 8 and char2 lines 3 4 5 6
+     */
     void GetDialogueLines(int a , int b , int x ,int y)
     {
         int ALL_LINES1 = b - a;         int ALL_LINES2 = y - x;

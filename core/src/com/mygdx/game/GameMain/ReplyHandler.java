@@ -10,6 +10,13 @@ import java.util.StringTokenizer;
 public class ReplyHandler
 {
     private String Character = "", Line="";
+
+    /**
+     *
+     * @param Name The name of the character we want to get a reply from
+     * @param id the id of the reply we want our character to say
+     *           GetReplyFor(name , id) add the name and the id of a reply you want to display
+     */
     void GetReplyFor(String Name, int id)
     {
         FileHandle file = Gdx.files.internal("desktop/assets/Text/AllText");

@@ -1,10 +1,6 @@
 package com.mygdx.game.GameMain;
-/**
- * Created by Filip
- */
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -12,8 +8,6 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-
 import com.mygdx.game.Abstracts.AIObjects;
 import com.mygdx.game.Abstracts.ObjectsInGame;
 import com.mygdx.game.GameObjects.Player;
@@ -21,13 +15,15 @@ import com.mygdx.game.GameObjects.AIObjects.Enemy1;
 import com.mygdx.game.GameObjects.AIObjects.AI_Logic;
 import com.mygdx.game.EnvironmentBuild.LevelRender;
 
+/**
+ * Created by Filip
+ */
 public class MainClass extends ApplicationAdapter {
 
 	private SpriteBatch batch;
 	private OrthographicCamera camera;
 	private Player player;
 	private Logic Run;
-	private DialogueHandler Dialog;
 	private Control KeyBindings;
 	private AI_Logic AI_log = new AI_Logic();
 	private LevelRender Render;
@@ -35,11 +31,8 @@ public class MainClass extends ApplicationAdapter {
 	private ArrayList<AIObjects> enemyList = new ArrayList<AIObjects>();
 	private void AI_Placer(int x)
 	{
-
 		int H =0 , W = 0 , alg = 0 , width = 0, height = 0; boolean stop = false;
-
         String path = "desktop/assets/LevelStructure/Level" +x;
-
 		///GET BORDERS
 		FileHandle file = Gdx.files.internal(path);
 		StringTokenizer tokens = new StringTokenizer(file.readString());
@@ -80,7 +73,6 @@ public class MainClass extends ApplicationAdapter {
 				alg++;
 			}
 		}
-
 		for(int i = 0 ;i < H;i++)
 		{
 			for(int j = 0;j <= W -1;j++)
@@ -109,9 +101,9 @@ public class MainClass extends ApplicationAdapter {
 		batch = new  SpriteBatch();
 		Render = new LevelRender();
 		Render.GetLevelData(1);
-		Dialog = new DialogueHandler();
-		Dialog.GetDialogueLines(3,8,11,12);
-		Dialog.BuildDialogue("Hero" , "Npc1");
+		DialogueHandler dialog = new DialogueHandler();
+		dialog.GetDialogueLines(3,8,11,12);
+		dialog.BuildDialogue("Hero" , "Npc1");
 		objectsList = Render.GetObjectsList();
 		KeyBindings = new Control();
 		Run = new Logic();
