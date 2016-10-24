@@ -70,13 +70,13 @@ public class Enemy1 extends AIObjects
     @Override
     public void action(int type, float x, float y)
     {
-        if(type == 1)
-        {
-            touched = true;
-        }
-        if (type == 2)
-        {
-            touched = false;
+        switch (type) {
+            case 1:
+                touched = true;
+                break;
+            case 2:
+                touched = false;
+                break;
         }
     }
     @Override
@@ -101,10 +101,7 @@ public class Enemy1 extends AIObjects
     @Override
     public int Dead()
     {
-        if(HitPoints <= 0){
-            return 0;
-        }
-        else return 1;
+        return HitPoints <= 0 ? 0 : 1;
     }
 
     //_____________________//
@@ -121,7 +118,7 @@ public class Enemy1 extends AIObjects
                 AnimationsDraw(batch ,(int)GetPosition(1), (int)GetPosition(2) , 1);
                 batch.end();
             }
-            if(GetPosition(1) > x + 40)
+            else if(GetPosition(1) > x + 40)
             {
                 batch.begin();
                 moveLeft(Gdx.graphics.getDeltaTime());
@@ -170,7 +167,6 @@ public class Enemy1 extends AIObjects
             }
             return true;
         }
-
         else{
             return false;
         }
@@ -190,77 +186,73 @@ public class Enemy1 extends AIObjects
     public void AnimationsDraw(SpriteBatch batch, int x, int y, int id) {
 
         Animation animation;
-        if(id ==1)
-        {
-            animation = new Animation
-                    (
-                            0.1f ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/1.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/2.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/3.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/6.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/4.png"))
-                    );
+        switch (id) {
+            case 1:
+                animation = new Animation
+                        (
+                                0.1f,
+                                new TextureRegion(new Texture("desktop/assets/Sprite/1.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/2.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/3.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/6.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/4.png"))
+                        );
 
-            animation.setPlayMode(Animation.PlayMode.LOOP);
-            batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()),x,y);
-        }
-        else if(id == 2)
-        {
-            animation = new Animation
-                    (
-                            0.1f ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/1s.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/2s.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/3s.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/6s.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/4s.png"))
-                    );
+                animation.setPlayMode(Animation.PlayMode.LOOP);
+                batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()), x, y);
+                break;
+            case 2:
+                animation = new Animation
+                        (
+                                0.1f,
+                                new TextureRegion(new Texture("desktop/assets/Sprite/1s.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/2s.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/3s.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/6s.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/4s.png"))
+                        );
 
-            animation.setPlayMode(Animation.PlayMode.LOOP);
-            batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()),x,y);
-        }
-        else if(id == 3)
-        {
-            animation = new Animation
-                    (
-                            0.5f ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/at1.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/at3.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/at2.png"))
-                    );
+                animation.setPlayMode(Animation.PlayMode.LOOP);
+                batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()), x, y);
+                break;
+            case 3:
+                animation = new Animation
+                        (
+                                0.5f,
+                                new TextureRegion(new Texture("desktop/assets/Sprite/at1.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/at3.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/at2.png"))
+                        );
 
-            animation.setPlayMode(Animation.PlayMode.LOOP);
-            batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()),x,y);
-        }
-        else if(id == 4)
-        {
-            animation = new Animation
-                    (
-                            0.5f ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/at1s.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/at3s.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/at2s.png"))
-                    );
-            animation.setPlayMode(Animation.PlayMode.LOOP);
-            batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()),x,y);
-        }
-        else if(id == 5)
-        {
-            animation = new Animation
-                    (
-                            0.5f ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/f2.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/f2.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/f3.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/f4.png"))
-                    );
-            animation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
-            batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()),x,y);
-        }
-        else
-        {
-            Draw(batch);
+                animation.setPlayMode(Animation.PlayMode.LOOP);
+                batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()), x, y);
+                break;
+            case 4:
+                animation = new Animation
+                        (
+                                0.5f,
+                                new TextureRegion(new Texture("desktop/assets/Sprite/at1s.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/at3s.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/at2s.png"))
+                        );
+                animation.setPlayMode(Animation.PlayMode.LOOP);
+                batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()), x, y);
+                break;
+            case 5:
+                animation = new Animation
+                        (
+                                0.5f,
+                                new TextureRegion(new Texture("desktop/assets/Sprite/f2.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/f2.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/f3.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/f4.png"))
+                        );
+                animation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+                batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()), x, y);
+                break;
+            default:
+                Draw(batch);
+                break;
         }
 
     }
@@ -324,33 +316,30 @@ public class Enemy1 extends AIObjects
         {
             float position , positionChanger;
             batch.begin();
-            if(GetPosition(1) > player.GetPosition(1))
-            {
-                id = 1;
-            }
-            else
-            {
-                id =2;
-            }
-            if(id == 1)
-            {
-                if(i1 <=2){
-                    random = (float )(Math.random() * 80 + 20);
-                    i1++;
-                }
-                position =GetPosition(1);		positionChanger = position + random * Gdx.graphics.getDeltaTime()*1.5f;
-                setPosition(positionChanger , GetPosition(2));
-                AnimationsDraw(batch ,(int)GetPosition(1), (int)GetPosition(2) , 5);
-            }
-            else
-            {
-                if(i1 <=2){
-                    random = (float )(Math.random() * 80 + 20);
-                    i1++;
-                }
-                position =GetPosition(1);		positionChanger = position - random * Gdx.graphics.getDeltaTime()*1.5f;
-                setPosition(positionChanger , GetPosition(2));
-                AnimationsDraw(batch ,(int)GetPosition(1), (int)GetPosition(2) , 5);
+            id = GetPosition(1) > player.GetPosition(1) ? 1 : 2;
+            switch (id) {
+                case 1:
+                    if (i1 <= 2)
+                    {
+                        random = (float) (Math.random() * 80 + 20);
+                        i1++;
+                    }
+                    position = GetPosition(1);
+                    positionChanger = position + random * Gdx.graphics.getDeltaTime() * 1.5f;
+                    setPosition(positionChanger, GetPosition(2));
+                    AnimationsDraw(batch, (int) GetPosition(1), (int) GetPosition(2), 5);
+                    break;
+                default:
+                    if (i1 <= 2)
+                    {
+                        random = (float) (Math.random() * 80 + 20);
+                        i1++;
+                    }
+                    position = GetPosition(1);
+                    positionChanger = position - random * Gdx.graphics.getDeltaTime() * 1.5f;
+                    setPosition(positionChanger, GetPosition(2));
+                    AnimationsDraw(batch, (int) GetPosition(1), (int) GetPosition(2), 5);
+                    break;
             }
             batch.end();
         }

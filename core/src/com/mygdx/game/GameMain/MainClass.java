@@ -12,7 +12,6 @@ import com.mygdx.game.Abstracts.AIObjects;
 import com.mygdx.game.Abstracts.ObjectsInGame;
 import com.mygdx.game.GameObjects.Player;
 import com.mygdx.game.GameObjects.AIObjects.Enemy1;
-import com.mygdx.game.GameObjects.AIObjects.AI_Logic;
 import com.mygdx.game.EnvironmentBuild.LevelRender;
 
 /**
@@ -20,15 +19,14 @@ import com.mygdx.game.EnvironmentBuild.LevelRender;
  */
 public class MainClass extends ApplicationAdapter {
 
-	private SpriteBatch batch;
-	private OrthographicCamera camera;
-	private Player player;
-	private Logic Run;
-	private Control KeyBindings;
-	private AI_Logic AI_log = new AI_Logic();
-	private LevelRender Render;
-	private ArrayList<ObjectsInGame> objectsList = new ArrayList<ObjectsInGame>();
-	private ArrayList<AIObjects> enemyList = new ArrayList<AIObjects>();
+	 SpriteBatch batch;
+     OrthographicCamera camera;
+	 Player player;
+	 private Logic Run;
+	 private Control KeyBindings;
+	 private LevelRender Render;
+	 ArrayList<ObjectsInGame> objectsList = new ArrayList<ObjectsInGame>();
+	 ArrayList<AIObjects> enemyList = new ArrayList<AIObjects>();
 	private void AI_Placer(int x)
 	{
 		int H =0 , W = 0 , alg = 0 , width = 0, height = 0; boolean stop = false;
@@ -134,7 +132,7 @@ public class MainClass extends ApplicationAdapter {
 		Gdx.gl30.glClearColor(1, 1, 1, 1);
 		Gdx.gl30.glClear(GL30.GL_COLOR_BUFFER_BIT);
 		drawSprites();
-		Run.RunGameLogic(player, KeyBindings, AI_log, objectsList, enemyList, batch, camera);
+		Run.RunGameLogic(this, KeyBindings);
 		player.CreateHealthBar(camera , (int)player.GetPosition(1) - 680 , 745);
 		if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
 		{

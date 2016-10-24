@@ -1,16 +1,15 @@
 package com.mygdx.game.GameMain;
-import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-import com.mygdx.game.Abstracts.AIObjects;
 import com.mygdx.game.Abstracts.ObjectsInGame;
 import com.mygdx.game.GameObjects.Brick;
 import com.mygdx.game.GameObjects.Player;
 import com.mygdx.game.GameObjects.AIObjects.AI_Logic;
+
 /**
  * Created by Filip
  */
@@ -21,38 +20,39 @@ class Logic
      *
      *All game logic , collision , camera Update ,AI_logic,and the KeyBindings
      */
-    void RunGameLogic
-            (
-                    Player player, Control keyBindings, AI_Logic AI_log,
-                    ArrayList<ObjectsInGame> objectsList, ArrayList<AIObjects> enemyList,
-                    SpriteBatch batch, OrthographicCamera camera
-            )
+    private  AI_Logic AI_log;
+
+    Logic() {
+        AI_log = new AI_Logic();
+    }
+
+    void RunGameLogic(MainClass Main , Control keyBindings)
     {
-        keyBindings.Set(player, enemyList);
-        player.update(Gdx.graphics.getDeltaTime());
+        keyBindings.Set(Main.player, Main.enemyList);
+        Main.player.update(Gdx.graphics.getDeltaTime());
         Rectangle temp = new Rectangle(0,0,800,10);
-        if(player.hits(temp) != -1){
-            player.action(1,0, 10);
+        if(Main.player.hits(temp) != -1){
+            Main.player.action(1,0, 10);
         }
-        for (ObjectsInGame anObjectsList : objectsList) {
+        for (ObjectsInGame anObjectsList : Main.objectsList) {
             Brick t = (Brick) anObjectsList;
-            switch (player.hits(t.getHitBox())) {
+            switch (Main.player.hits(t.getHitBox())) {
                 case 1:
-                    player.action(1, 0, t.getHitBox().y + t.getHitBox().height);
+                    Main.player.action(1, 0, t.getHitBox().y + t.getHitBox().height);
                     break;
                 case 2:
-                    player.action(2, t.getHitBox().x + t.getHitBox().width - 1, 0);
+                    Main.player.action(2, t.getHitBox().x + t.getHitBox().width - 1, 0);
                     break;
                 case 3:
-                    player.action(3, t.getHitBox().x - t.getHitBox().width + 1, 0);
+                    Main.player.action(3, t.getHitBox().x - t.getHitBox().width + 1, 0);
                     break;
                 case 4:
-                    player.action(4, 0, t.getHitBox().y - t.getHitBox().height);
+                    Main.player.action(4, 0, t.getHitBox().y - t.getHitBox().height);
                     break;
             }
         }
-        AI_log.Load(enemyList, batch, player, camera);
-        UpdateCamera(batch, camera,player);
+        AI_log.Load(Main.enemyList, Main.batch, Main.player, Main.camera);
+        UpdateCamera(Main.batch, Main.camera,Main.player);
     }
     private void UpdateCamera(SpriteBatch batch, OrthographicCamera camera, Player player)
     {

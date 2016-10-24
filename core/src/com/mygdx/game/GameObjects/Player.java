@@ -48,84 +48,80 @@ public class Player extends PlayerObjects
     public void AnimationDraw(SpriteBatch batch ,int x ,int y , int id)
     {
         Animation animation;
-        if(id ==1)
-        {
-            animation = new Animation
-                    (
-                            0.08f ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/1.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/2.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/3.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/6.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/4.png"))
-                    );
+        switch (id) {
+            case 1:
+                animation = new Animation
+                        (
+                                0.08f,
+                                new TextureRegion(new Texture("desktop/assets/Sprite/1.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/2.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/3.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/6.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/4.png"))
+                        );
 
-            animation.setPlayMode(Animation.PlayMode.LOOP);
-            batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()),x,y);
-        }
-        else if(id == 2)
-        {
-            animation = new Animation
-                    (
-                            0.08f ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/1s.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/2s.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/3s.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/6s.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/4s.png"))
-                    );
+                animation.setPlayMode(Animation.PlayMode.LOOP);
+                batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()), x, y);
+                break;
+            case 2:
+                animation = new Animation
+                        (
+                                0.08f,
+                                new TextureRegion(new Texture("desktop/assets/Sprite/1s.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/2s.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/3s.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/6s.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/4s.png"))
+                        );
 
-            animation.setPlayMode(Animation.PlayMode.LOOP);
-            batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()),x,y);
-        }
-        else if(id == 3)
-        {
-            animation = new Animation
-                    (
-                            0.5f ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/at1.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/at3.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/at2.png"))
-                    );
+                animation.setPlayMode(Animation.PlayMode.LOOP);
+                batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()), x, y);
+                break;
+            case 3:
+                animation = new Animation
+                        (
+                                0.5f,
+                                new TextureRegion(new Texture("desktop/assets/Sprite/at1.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/at3.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/at2.png"))
+                        );
 
-            animation.setPlayMode(Animation.PlayMode.LOOP);
-            batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()),x,y);
-        }
-        else if(id == 4)
-        {
-            animation = new Animation
-                    (
-                            0.5f ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/at1s.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/at3s.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/at2s.png"))
-                    );
+                animation.setPlayMode(Animation.PlayMode.LOOP);
+                batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()), x, y);
+                break;
+            case 4:
+                animation = new Animation
+                        (
+                                0.5f,
+                                new TextureRegion(new Texture("desktop/assets/Sprite/at1s.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/at3s.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/at2s.png"))
+                        );
 
-            animation.setPlayMode(Animation.PlayMode.LOOP);
-            batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()),x,y);
-        }
-        else if(id == 5)
-        {
-            animation = new Animation
-                    (
-                            0.5f ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/f2.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/f3.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/f4.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/f4.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/f4.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/f4.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/f4.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/f4.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/f4.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/f4.png"))
-                    );
-            animation.setPlayMode(Animation.PlayMode.NORMAL);
-            batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()),x,y);
-        }
-        else
-        {
-            this.Draw(batch);
+                animation.setPlayMode(Animation.PlayMode.LOOP);
+                batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()), x, y);
+                break;
+            case 5:
+                animation = new Animation
+                        (
+                                0.5f,
+                                new TextureRegion(new Texture("desktop/assets/Sprite/f2.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/f3.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/f4.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/f4.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/f4.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/f4.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/f4.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/f4.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/f4.png")),
+                                new TextureRegion(new Texture("desktop/assets/Sprite/f4.png"))
+                        );
+                animation.setPlayMode(Animation.PlayMode.NORMAL);
+                batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()), x, y);
+                break;
+            default:
+                Draw(batch);
+                break;
         }
     }
     public int hits(Rectangle r)
