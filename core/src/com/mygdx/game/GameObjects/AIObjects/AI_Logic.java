@@ -66,7 +66,7 @@ public class AI_Logic
                     CountTime(t.AttackSpeed(), enemyList ,player,2);
                 }
                 t.createHealthBar(camera);
-                if(t.Dead() == 0)
+                if(t.Dead())
                 {
                     i.remove();
                 }

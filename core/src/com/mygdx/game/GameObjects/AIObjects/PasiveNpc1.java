@@ -9,18 +9,21 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.Abstracts.AIObjects;
+import com.mygdx.game.GameMain.QuestHandler;
 import com.mygdx.game.GameObjects.Player;
 
 public class PasiveNpc1 extends AIObjects
 {
     private Sprite sprite;
+    private String NpcName = "";
     private Rectangle hitBox;
     private float time;
-    private int quest , replyID;
-    private String[] replyLines;
+    private QuestHandler Quests;
+    private int quest = 0;
 
     public PasiveNpc1(int x , int y)
     {
+        Quests = new QuestHandler();
         Texture texture = new Texture(Gdx.files.internal(""));
         sprite = new Sprite(texture);
         hitBox = new Rectangle(0,0,128,128);
@@ -135,19 +138,12 @@ public class PasiveNpc1 extends AIObjects
         return Math.abs(GetPosition(1) - x) <= 40;
     }
     @Override
-    public boolean ShouldStart() {
-        GiveQuest(quest);
-        return false;
-    }
-
-    @Override
     public void Fall(Player player, int id, SpriteBatch batch) {
-// Static NPC
+    // Static NPC
     }
-
     @Override
-    public int Dead() {
-        return 0;
+    public boolean Dead() {
+        return false;
     }
 
     @Override
@@ -156,8 +152,9 @@ public class PasiveNpc1 extends AIObjects
     }
 
     @Override
-    public void TakeDamange(int x, float player) {
-//  Immune
+    public void TakeDamange(int x, float player)
+    {
+        //  Immune
     }
 
     @Override
@@ -174,13 +171,25 @@ public class PasiveNpc1 extends AIObjects
     public float AttackSpeed() {
         return 0;
     }
-    public void GiveQuest(int quest)
-    {
-        GetText(replyID);
-    }
-    private String GetText(int index)
-    {
 
-        return replyLines[index];
+    private void Name(String nm)
+    {
+        NpcName = nm;
+    }
+    private void QuestNr(int Qnr)
+    {
+        quest = Qnr;
+    }
+    @Override
+    public boolean ShouldStart() {
+        return false;
+    }
+    public void GiveQuest(String Npc,int quest)
+    {
+        GetText(Npc,quest);
+    }
+    private String GetText(String npc,int index)
+    {
+        return Quests.GetQuest(npc,index);
     }
 }

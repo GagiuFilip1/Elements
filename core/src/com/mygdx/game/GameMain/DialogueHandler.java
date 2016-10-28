@@ -1,18 +1,23 @@
 package com.mygdx.game.GameMain;
- /**
+
+import java.util.ArrayList;
+
+/**
  * Created by Filip on 10/22/2016.
  **/
     class DialogueHandler
 {
     private ReplyHandler ReplyText;
     private int[] Lines1 , Lines2;
+    private ArrayList<String> Char1Lines , Char2Lines;
     private int indexC1= 0, indexC2 = 0;
 
     DialogueHandler()
     {
         ReplyText = new ReplyHandler();
+        Char1Lines = new ArrayList<String>();
+        Char2Lines = new ArrayList<String>();
     }
-
     /**
      *
      * @param CharId1 Name of the first character of the dialog
@@ -26,10 +31,12 @@ package com.mygdx.game.GameMain;
         {
             do
             {
-                ReplyText.GetReplyFor(CharId1, SendChar1Line(indexC1));
-                System.out.print("\n");
-                ReplyText.GetReplyFor(CharId2, SendChar2Line(indexC2));
-                System.out.print("\n");
+                if(ReplyText.GetReplyFor(CharId1, SendChar1Line(indexC1)) != null) {
+                    Char1Lines.add(ReplyText.GetReplyFor(CharId1, SendChar1Line(indexC1)));
+                }
+                if(ReplyText.GetReplyFor(CharId2 , SendChar2Line(indexC2)) != null) {
+                    Char2Lines.add(ReplyText.GetReplyFor(CharId2, SendChar2Line(indexC2)));
+                }
                 if (indexC1 < Lines1.length - 1)
                 {
                     indexC1++;
@@ -38,7 +45,7 @@ package com.mygdx.game.GameMain;
                 {
                     indexC2++;
                 }
-            } while ((indexC1 < (Lines1.length - 1)) && (indexC2 < (Lines2.length - 1)));
+            } while ((indexC1 < (Lines1.length - 1)) && (indexC2 < (Lines2.length - 1)) );
         }
     }
 
@@ -62,6 +69,18 @@ package com.mygdx.game.GameMain;
             Lines2[i] = x;
             x++;
         }
+    }
+
+    /**
+     * @return List of the replys of Char1 and Char2
+     */
+    ArrayList<String>Char1Text()
+    {
+        return Char1Lines;
+    }
+    ArrayList<String>Char2Text()
+    {
+        return Char2Lines;
     }
     private int SendChar1Line(int index)
     {

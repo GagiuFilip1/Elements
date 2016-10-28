@@ -99,9 +99,6 @@ public class MainClass extends ApplicationAdapter {
 		batch = new  SpriteBatch();
 		Render = new LevelRender();
 		Render.GetLevelData(1);
-		DialogueHandler dialog = new DialogueHandler();
-		dialog.GetDialogueLines(3,8,11,12);
-		dialog.BuildDialogue("Hero" , "Npc1");
 		objectsList = Render.GetObjectsList();
 		KeyBindings = new Control();
 		Run = new Logic();

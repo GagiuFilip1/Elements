@@ -26,7 +26,7 @@ public abstract class AIObjects
     public abstract boolean IsInRange(float x , float y);
     public abstract boolean ShouldStart();
     public abstract void Fall(Player player, int id , SpriteBatch batch);
-    public abstract int Dead();
+    public abstract boolean Dead();
     public abstract boolean IsInFallow(float x, float y);
     public abstract void TakeDamange(int x , float player);
     public abstract void createHealthBar(Camera camera);

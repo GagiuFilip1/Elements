@@ -99,9 +99,9 @@ public class Enemy1 extends AIObjects
         return 0;
     }
     @Override
-    public int Dead()
+    public boolean Dead()
     {
-        return HitPoints <= 0 ? 0 : 1;
+        return HitPoints <= 0;
     }
 
     //_____________________//
@@ -124,17 +124,14 @@ public class Enemy1 extends AIObjects
                 moveLeft(Gdx.graphics.getDeltaTime());
                 AnimationsDraw(batch ,(int)GetPosition(1), (int)GetPosition(2) , 2);
                 batch.end();
-
             }
         }
     }
-
     public void moveLeft(float delta)
     {
         hitBox.x -= Speed * delta;
         sprite.setPosition(hitBox.x,hitBox.y);
     }
-
     @Override
     public void moveRight(float delta)
     {
@@ -174,7 +171,7 @@ public class Enemy1 extends AIObjects
 
     ///__________________///
     //		DRAWING     //
-///__________________///
+    ///__________________///
     @Override
     public void Draw(SpriteBatch batch)
     {
