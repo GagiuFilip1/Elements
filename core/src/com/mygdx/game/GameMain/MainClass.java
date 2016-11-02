@@ -4,6 +4,7 @@ import java.util.StringTokenizer;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -27,6 +28,8 @@ public class MainClass extends ApplicationAdapter {
 	 private LevelRender Render;
 	 ArrayList<ObjectsInGame> objectsList = new ArrayList<ObjectsInGame>();
 	 ArrayList<AIObjects> enemyList = new ArrayList<AIObjects>();
+	 static public AssetManager assetManager = new AssetManager();
+
 	private void AI_Placer(int x)
 	{
 		int H =0 , W = 0 , alg = 0 , width = 0, height = 0; boolean stop = false;
@@ -110,6 +113,7 @@ public class MainClass extends ApplicationAdapter {
 	public void dispose ()
 	{
 		batch.dispose();
+		assetManager.dispose();
 	}
 	private void drawSprites()
 	{
