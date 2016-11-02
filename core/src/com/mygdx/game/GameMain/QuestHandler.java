@@ -15,47 +15,38 @@ public class QuestHandler
         String S = String.valueOf(index);
         FileHandle file = Gdx.files.internal("desktop/assets/Quests/AllQuests");
         StringTokenizer tokens = new StringTokenizer(file.readString());
-        while (tokens.hasMoreTokens())
-        {
-            String token = tokens.nextToken();
-            if(token.equals("*"+NameOfNpc))
-            {
-                token = tokens.nextToken();
-                if (token.equals(S))
-                {
-                    QUEST_LINE = "";
+        if (tokens.hasMoreTokens()) {
+            do {
+                String token = tokens.nextToken();
+                if (token.equals("*" + NameOfNpc)) {
                     token = tokens.nextToken();
-                    if (!token.equals("|"))
-                    {
-                        do
-                        {
-                            QUEST_LINE += token + " ";
-                            token = tokens.nextToken();
-                        } while (!token.equals("|"));
-                    }
-                }
-                else
-                {
-                    System.out.print("else");
-                    while(!token.equals(S))
-                    {
-                        token = tokens.nextToken();
-                    }
-                    if (token.equals(S))
-                    {
+                    if (token.equals(S)) {
                         QUEST_LINE = "";
                         token = tokens.nextToken();
-                        if (!token.equals("|"))
-                        {
-                            do
-                            {
+                        if (!token.equals("|")) {
+                            do {
                                 QUEST_LINE += token + " ";
                                 token = tokens.nextToken();
                             } while (!token.equals("|"));
                         }
+                    } else {
+                        System.out.print("else");
+                        while (!token.equals(S)) {
+                            token = tokens.nextToken();
+                        }
+                        if (token.equals(S)) {
+                            QUEST_LINE = "";
+                            token = tokens.nextToken();
+                            if (!token.equals("|")) {
+                                do {
+                                    QUEST_LINE += token + " ";
+                                    token = tokens.nextToken();
+                                } while (!token.equals("|"));
+                            }
+                        }
                     }
                 }
-            }
+            } while (tokens.hasMoreTokens());
         }
     }
     public String GetQuest(String NameOFNpc, int index)

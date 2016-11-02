@@ -1,7 +1,4 @@
 package com.mygdx.game.EnvironmentBuild;
-/**
- * Created by Filip
- */
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -11,10 +8,16 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import com.mygdx.game.Abstracts.AIObjects;
 import com.mygdx.game.Abstracts.ObjectsInGame;
+import com.mygdx.game.Abstracts.PasiveNpc;
+import com.mygdx.game.GameObjects.AIObjects.Enemy1;
+import com.mygdx.game.GameObjects.AIObjects.PasiveNpc1;
 import com.mygdx.game.GameObjects.Brick;
 import com.mygdx.game.GameObjects.Player;
-
+/**
+ * Created by Filip
+ */
 public class LevelRender
 {
     private int H , W , alg = 0;
@@ -125,4 +128,47 @@ public class LevelRender
         Sprite sprite = new Sprite(texture);
         sprite.setPosition(player.GetPosition(1)-683, 0);
     }
+    public void SetEnemy(SpriteBatch batch, ArrayList<AIObjects> enemyList)
+    {
+        int width = 0, height = 0;
+        for(int i = 0 ;i < H;i++)
+        {
+            for(int j = 0;j <= W -1;j++)
+            {
+                if(Map[i][j] == 3)
+                {
+                    enemyList.add(new Enemy1(width , height));
+                }
+                width += 180;
+            }
+            width = 0;
+            height += 60;
+        }
+        for(AIObjects t : enemyList )
+        {
+            t.Draw(batch);
+        }
+    }
+    public void SetPasives(SpriteBatch batch, ArrayList<PasiveNpc> pasiveList)
+    {
+        int width = 0, height = 0;
+        for(int i = 0 ;i < H;i++)
+        {
+            for(int j = 0;j <= W -1;j++)
+            {
+                if(Map[i][j] == 4)
+                {
+                    pasiveList.add(new PasiveNpc1(false , true, "TestNpc" , width , height));
+                }
+                width += 180;
+            }
+            width = 0;
+            height += 60;
+        }
+        for(PasiveNpc t : pasiveList )
+        {
+            t.Draw(batch);
+        }
+    }
+
 }

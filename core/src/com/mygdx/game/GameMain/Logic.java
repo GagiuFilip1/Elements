@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 import com.mygdx.game.Abstracts.ObjectsInGame;
+import com.mygdx.game.EnvironmentBuild.LevelRender;
 import com.mygdx.game.GameObjects.Brick;
 import com.mygdx.game.GameObjects.Player;
 import com.mygdx.game.GameObjects.AIObjects.AI_Logic;
@@ -21,14 +22,17 @@ class Logic
      *All game logic , collision , camera Update ,AI_logic,and the KeyBindings
      */
     private  AI_Logic AI_log;
+    private LevelRender Render;
+
 
     Logic() {
         AI_log = new AI_Logic();
+        Render = new LevelRender();
     }
 
     void RunGameLogic(MainClass Main , Control keyBindings)
     {
-        keyBindings.Set(Main.player, Main.enemyList);
+        keyBindings.Set(Main.player, Main.enemyList , Main.pasiveList);
         Main.player.update(Gdx.graphics.getDeltaTime());
         Rectangle temp = new Rectangle(0,0,800,10);
         if(Main.player.hits(temp) != -1){
@@ -51,7 +55,8 @@ class Logic
                     break;
             }
         }
-        AI_log.Load(Main.enemyList, Main.batch, Main.player, Main.camera);
+        AI_log.Load(Main.enemyList, Main.batch,Main.player, Main.camera);
+        Render.SetPasives(Main.batch,Main.pasiveList);
         UpdateCamera(Main.batch, Main.camera,Main.player);
     }
     private void UpdateCamera(SpriteBatch batch, OrthographicCamera camera, Player player)

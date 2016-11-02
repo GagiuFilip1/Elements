@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.mygdx.game.Abstracts.AIObjects;
+import com.mygdx.game.Abstracts.PasiveNpc;
 import com.mygdx.game.GameObjects.Player;
 
 /**
@@ -47,7 +48,6 @@ public class AI_Logic
     }
     public void Load(ArrayList<AIObjects> enemyList , SpriteBatch batch , Player player , Camera camera)
     {
-
         for(Iterator<AIObjects> i = enemyList.iterator(); i.hasNext();)
         {
             Enemy1 t = (Enemy1) i.next();

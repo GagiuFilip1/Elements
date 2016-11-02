@@ -48,7 +48,7 @@ class ReplyHandler
     }
     private String CreateReply()
     {
-        return Character + Line;
+        return Line;
     }
     private String GetNPC_Name(String aux)
     {

@@ -1,21 +1,25 @@
 package com.mygdx.game.GameMain;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
 import com.mygdx.game.Abstracts.AIObjects;
+import com.mygdx.game.Abstracts.PasiveNpc;
+import com.mygdx.game.GUI.DialogueInterface;
+import com.mygdx.game.GUI.GUI_Handler;
+import com.mygdx.game.GameObjects.AIObjects.PasiveNpc1;
 import com.mygdx.game.GameObjects.Player;
 import com.mygdx.game.GameObjects.AIObjects.Enemy1;
 /**
  * Created by Filip
  */
-class Control
+public class Control
 {
     private int animationID = 0 , playerPosition = 0;
-    private boolean jumpID = false;
+    public boolean jumpID = false , start = false;
+   // private GUI_Handler PLS = new GUI_Handler();
 
     /**
      *
@@ -23,7 +27,7 @@ class Control
      * @param enemyList (all AI's that can be found in game)
      * Set(player, enemyList) get the KeyBindings and how they influence player and AI's;
      */
-    void Set(Player player, ArrayList<AIObjects> enemyList)
+    void Set(Player player, ArrayList<AIObjects> enemyList ,ArrayList<PasiveNpc> pasiveList)
     {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT))
         {
@@ -53,17 +57,29 @@ class Control
                 animationID = 4;
             }
 
-            for(Iterator<AIObjects> i = enemyList.iterator(); i.hasNext();)
-            {
-                Enemy1 t = (Enemy1) i.next();
+            for (AIObjects anEnemyList : enemyList) {
+                Enemy1 t = (Enemy1) anEnemyList;
                 t.TakeDamange(40, player.GetPosition(1));
-                if(t.IsInRange(player.GetPosition(1), t.GetPosition(1)))
-                {
+                if (t.IsInRange(player.GetPosition(1), t.GetPosition(1))) {
                     t.Hited(player.GetPosition(1));
                 }
-
             }
             player.Attack();
+        }
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.F))
+        {
+            for (PasiveNpc aPasiveList : pasiveList) {
+                PasiveNpc1 t = (PasiveNpc1) aPasiveList;
+                if (t.IsInRange(player))
+                {
+                    start = true;
+                    t.Start = start;
+                  //  PLS.DrawStart = true;
+                    t.StartDialog(3,5,10,15);
+                    GUI_Handler.DrawStart = true;
+
+                }
+            }
         }
         else
         {

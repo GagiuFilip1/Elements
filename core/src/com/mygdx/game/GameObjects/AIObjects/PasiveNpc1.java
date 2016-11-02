@@ -1,195 +1,116 @@
 package com.mygdx.game.GameObjects.AIObjects;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.mygdx.game.Abstracts.AIObjects;
+import com.mygdx.game.Abstracts.PasiveNpc;
+import com.mygdx.game.GUI.DialogueInterface;
+import com.mygdx.game.GameMain.DialogueHandler;
 import com.mygdx.game.GameMain.QuestHandler;
 import com.mygdx.game.GameObjects.Player;
 
-public class PasiveNpc1 extends AIObjects
-{
-    private Sprite sprite;
-    private String NpcName = "";
-    private Rectangle hitBox;
-    private float time;
-    private QuestHandler Quests;
-    private int quest = 0;
 
-    public PasiveNpc1(int x , int y)
+public class PasiveNpc1 extends PasiveNpc
+{
+    private String SetName;
+    private QuestHandler Quester;
+    private Rectangle HitBox;
+    private DialogueInterface DialogGUI;
+    private DialogueHandler Dialog;
+    private Sprite sprite;
+    public boolean Quest_Check , Dialog_Check ,Start;
+    public PasiveNpc1(boolean HaveQuest, boolean HaveDialog , String Name ,int x ,int y)
     {
-        Quests = new QuestHandler();
-        Texture texture = new Texture(Gdx.files.internal(""));
-        sprite = new Sprite(texture);
-        hitBox = new Rectangle(0,0,128,128);
+        DialogGUI = new DialogueInterface();
+        Quest_Check = HaveQuest;
+        HitBox = new Rectangle(0,0,128,128);
+        Dialog_Check = HaveDialog;
+        Start = false;
+        Quester = new QuestHandler();
+        Dialog = new DialogueHandler();
+        Texture texture = new Texture(Gdx.files.internal("desktop/assets/Sprite/stay.png"));
+        sprite = new Sprite(texture,0,0,128,128);
+        SetName(Name);
         setPosition(x ,y);
     }
     @Override
-    public int hits(Rectangle r) {
-        return 0;
-    }
-
-    @Override
-    public void action(int type, float x, float y) {
-
-    }
-
-    @Override
-    public void update(SpriteBatch batch)
-    {
-
-    }
-
-    @Override
     public void setPosition(float x, float y)
     {
-    sprite.setPosition(x ,y);
-        hitBox.x = x;
-        hitBox.y = y;
+        sprite.setPosition(x , y);
+        HitBox.x =x;
+        HitBox.y = y;
     }
-
-    @Override
-    public void moveLeft(float delta) {
-    //Static NPC
-    }
-
-    @Override
-    public void moveRight(float delta) {
-    //Static NPC
-    }
-
     @Override
     public void Draw(SpriteBatch batch)
     {
         batch.begin();
-        sprite.draw(batch);
+        batch.draw(sprite , HitBox.x , HitBox.y);
+        CreateQuestMark(batch);
         batch.end();
-    }
 
-    @Override
-    public void Jump()
-    {
-    //Static NPC
-    }
-
-    @Override
-    public void Fallow(float x, SpriteBatch batch)
-    {
-    //Static NPC
-    }
-
-    @Override
-    public boolean Attack(float player, SpriteBatch batch)
-    {
-        return false;
     }
 
     @Override
     public void AnimationsDraw(SpriteBatch batch, int x, int y, int id)
     {
-        Animation animation;
-        if(id ==1)
-        {
-//            TO ADD ANIMATION
-            animation = new Animation
-                    (
-                            0.1f ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/1.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/2.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/3.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/6.png")) ,
-                            new TextureRegion(new Texture("desktop/assets/Sprite/4.png"))
-                    );
 
-            animation.setPlayMode(Animation.PlayMode.LOOP);
-            batch.draw(animation.getKeyFrame(time += Gdx.graphics.getDeltaTime()),x,y);
+    }
+    private void CreateQuestMark(SpriteBatch batch)
+    {
+        if(Quest_Check)
+        {
+            Texture markTexture = new Texture(Gdx.files.internal(""));
+            Sprite questMark = new Sprite(markTexture);
+            questMark.setPosition(GetPosition(1) , GetPosition(2) + 100);
+            sprite.draw(batch);
         }
     }
 
     @Override
-    public float GetPosition(int x) {
-        if(x == 1)
+    public void SetName(String name)
+    {
+        SetName = name;
+    }
+
+    @Override
+    public void StartDialog(int a, int b, int c ,int d)
+    {
+        if (Dialog_Check && Start)
         {
-            return hitBox.x;
+            Dialog.GetDialogueLines(a, b, c, d);
+            Dialog.BuildDialogue("Hero", SetName);
+            DialogGUI.Start(Dialog.Text());
+            //System.out.print(Dialog.Text() + " That was hero " +"\n");
         }
-        else
+    }
+    @Override
+    public void GiveQuest()
+    {
+       if(Quest_Check)
+       {
+           int questsId = 1;
+           System.out.print(Quester.GetQuest(SetName , questsId));
+       }
+    }
+    @Override
+    public float GetPosition(int x)
+    {
+        switch(x)
         {
-            return hitBox.y;
+            case 1:
+                return HitBox.x;
+            case 2 :
+                return HitBox.y;
+            default:
+                return 0;
         }
     }
 
     @Override
-    public Rectangle getHitBox() {
-        return hitBox;
-    }
-
-    @Override
-    public boolean Hited(float player) {
-        return false;
-    }
-
-    @Override
-    public boolean IsInRange(float x, float y) {
-        return Math.abs(GetPosition(1) - x) <= 40;
-    }
-    @Override
-    public void Fall(Player player, int id, SpriteBatch batch) {
-    // Static NPC
-    }
-    @Override
-    public boolean Dead() {
-        return false;
-    }
-
-    @Override
-    public boolean IsInFallow(float x, float y) {
-        return false;
-    }
-
-    @Override
-    public void TakeDamange(int x, float player)
+    public boolean IsInRange(Player x)
     {
-        //  Immune
-    }
-
-    @Override
-    public void createHealthBar(Camera camera) {
-
-    }
-
-    @Override
-    public int DealDamange() {
-        return 0;
-    }
-
-    @Override
-    public float AttackSpeed() {
-        return 0;
-    }
-
-    private void Name(String nm)
-    {
-        NpcName = nm;
-    }
-    private void QuestNr(int Qnr)
-    {
-        quest = Qnr;
-    }
-    @Override
-    public boolean ShouldStart() {
-        return false;
-    }
-    public void GiveQuest(String Npc,int quest)
-    {
-        GetText(Npc,quest);
-    }
-    private String GetText(String npc,int index)
-    {
-        return Quests.GetQuest(npc,index);
+        return Math.abs(x.GetPosition(1) - GetPosition(1)) < 40;
     }
 }
