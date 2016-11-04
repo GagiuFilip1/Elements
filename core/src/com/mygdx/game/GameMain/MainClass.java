@@ -9,8 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Abstracts.AIObjects;
 import com.mygdx.game.Abstracts.ObjectsInGame;
 import com.mygdx.game.Abstracts.PasiveNpc;
-import com.mygdx.game.GUI.DialogueInterface;
-import com.mygdx.game.GUI.GUI_Handler;
+import com.mygdx.game.GameObjects.Item;
 import com.mygdx.game.GameObjects.Player;
 import com.mygdx.game.EnvironmentBuild.LevelRender;
 
@@ -20,21 +19,18 @@ import com.mygdx.game.EnvironmentBuild.LevelRender;
 public class MainClass extends ApplicationAdapter {
 
 	 public SpriteBatch batch;
-     public OrthographicCamera camera;
+     OrthographicCamera camera;
 	 Player player;
 	 private Logic Run;
 	 private Control KeyBindings;
 	 private LevelRender Render;
-	 private GUI_Handler GUI;
-	private DialogueInterface Inter;
+	 private Item item;
 	 ArrayList<ObjectsInGame> objectsList = new ArrayList<ObjectsInGame>();
 	 ArrayList<AIObjects> enemyList = new ArrayList<AIObjects>();
      ArrayList<PasiveNpc> pasiveList = new ArrayList<PasiveNpc>();
 	@Override
 	public void create ()
 	{
-		Inter = new DialogueInterface();
-		GUI = new GUI_Handler();
 		batch = new  SpriteBatch();
 		Render = new LevelRender();         Render.GetLevelData(1);     Render.SetEnemy(batch, enemyList);
         Render.SetPasives(batch, pasiveList);
@@ -42,6 +38,7 @@ public class MainClass extends ApplicationAdapter {
 		KeyBindings = new Control();
 		Run = new Logic();
 		player = new Player(0,100);
+        item = new Item(1,1,(int)player.GetPosition(1),(int)player.GetPosition(2));
 		camera = new OrthographicCamera();		camera.setToOrtho(false,1366,768);
 	}
 	@Override
@@ -56,6 +53,7 @@ public class MainClass extends ApplicationAdapter {
 		batch.draw(LevelRender.sprite,player.GetPosition(1) - 684,0);
 		Render.Build(batch , objectsList);
 		player.AnimationDraw(batch, (int)player.GetPosition(1), (int)player.GetPosition(2) , KeyBindings.AnimationID());
+        item.Draw(this);
 		batch.end();
 	}
 	@Override
@@ -70,8 +68,5 @@ public class MainClass extends ApplicationAdapter {
 		{
 			player.Jump();
 		}
-		GUI.Dialog();
-      //  System.out.print("---------------- " + Inter.Destroy()+"\n");
-
 	}
 }

@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.Abstracts.PasiveNpc;
-import com.mygdx.game.GUI.DialogueInterface;
 import com.mygdx.game.GameMain.DialogueHandler;
 import com.mygdx.game.GameMain.QuestHandler;
 import com.mygdx.game.GameObjects.Player;
@@ -17,13 +16,11 @@ public class PasiveNpc1 extends PasiveNpc
     private String SetName;
     private QuestHandler Quester;
     private Rectangle HitBox;
-    private DialogueInterface DialogGUI;
     private DialogueHandler Dialog;
     private Sprite sprite;
     public boolean Quest_Check , Dialog_Check ,Start;
     public PasiveNpc1(boolean HaveQuest, boolean HaveDialog , String Name ,int x ,int y)
     {
-        DialogGUI = new DialogueInterface();
         Quest_Check = HaveQuest;
         HitBox = new Rectangle(0,0,128,128);
         Dialog_Check = HaveDialog;
@@ -81,7 +78,6 @@ public class PasiveNpc1 extends PasiveNpc
         {
             Dialog.GetDialogueLines(a, b, c, d);
             Dialog.BuildDialogue("Hero", SetName);
-            DialogGUI.Start(Dialog.Text());
             //System.out.print(Dialog.Text() + " That was hero " +"\n");
         }
     }

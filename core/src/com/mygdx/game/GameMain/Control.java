@@ -7,8 +7,6 @@ import com.badlogic.gdx.Input;
 
 import com.mygdx.game.Abstracts.AIObjects;
 import com.mygdx.game.Abstracts.PasiveNpc;
-import com.mygdx.game.GUI.DialogueInterface;
-import com.mygdx.game.GUI.GUI_Handler;
 import com.mygdx.game.GameObjects.AIObjects.PasiveNpc1;
 import com.mygdx.game.GameObjects.Player;
 import com.mygdx.game.GameObjects.AIObjects.Enemy1;
@@ -19,8 +17,6 @@ public class Control
 {
     private int animationID = 0 , playerPosition = 0;
     public boolean jumpID = false , start = false;
-   // private GUI_Handler PLS = new GUI_Handler();
-
     /**
      *
      * @param player (our player)
@@ -74,10 +70,7 @@ public class Control
                 {
                     start = true;
                     t.Start = start;
-                  //  PLS.DrawStart = true;
                     t.StartDialog(3,5,10,15);
-                    GUI_Handler.DrawStart = true;
-
                 }
             }
         }
