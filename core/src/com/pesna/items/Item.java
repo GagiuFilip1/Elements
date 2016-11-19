@@ -21,3 +21,10 @@ public abstract class Item { //ID + Textura + dropchance...
 	}
 	
 }
+
+
+// Item = filename, name, id, textura, enchant chance...
+
+// ItemStack = item_type, count, max_count;
+
+// ItemDropped = item_type, x, y

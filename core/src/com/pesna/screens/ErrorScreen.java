@@ -9,6 +9,9 @@ public class ErrorScreen implements IScreen {
 	
 	public void draw( Main _reference )
 	{
+		_reference.batch.setProjectionMatrix(_reference.camera.combined);
+		_reference.shapeRenderer.setProjectionMatrix(_reference.camera.combined);
+		
 		int gwidth = Gdx.graphics.getWidth();
 		int gheight = Gdx.graphics.getHeight();
 		

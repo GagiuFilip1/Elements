@@ -19,6 +19,9 @@ public class LoadingScreen implements IScreen {
 	
 	public void draw( Main _reference )
 	{
+		_reference.batch.setProjectionMatrix(_reference.camera.combined);
+		_reference.shapeRenderer.setProjectionMatrix(_reference.camera.combined);
+		
 		float progress = _reference.assetManager.getProgress();
 		int gwidth = Gdx.graphics.getWidth();
 		int gheight = Gdx.graphics.getHeight();
@@ -36,8 +39,8 @@ public class LoadingScreen implements IScreen {
 	 */
 	private void onLoaded( Main _reference )
 	{
-		_reference.gameRegistry.itemManager.assignTextures( _reference.assetManager ); // assign textures to each item
+		_reference.gameRegistry.onAssetsLoaded( _reference.assetManager );
 		//move to the next screen
-		_reference.screenManager.setScreen( _reference.screenManager.gameScreen );
+		_reference.screenManager.queueScreen( _reference.screenManager.gameScreen );
 	}
 }

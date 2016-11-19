@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.pesna.init.GameRegistry;
@@ -21,6 +22,8 @@ public class Main extends ApplicationAdapter {
 	
 	public ScreenManager screenManager;
 	public GameRegistry gameRegistry;
+	
+	public BitmapFont font;
 	//Viewport viewport;
 
 	@Override
@@ -34,6 +37,8 @@ public class Main extends ApplicationAdapter {
 		
 		gameRegistry = new GameRegistry(this);
 		screenManager = new ScreenManager(this);
+		
+		font = new BitmapFont();
 	}
 	
 	@Override
@@ -52,20 +57,14 @@ public class Main extends ApplicationAdapter {
 	
 	@Override
 	public void render () {
-		
 		if ( Gdx.input.isKeyJustPressed(Keys.ESCAPE) )
 		{
 			Gdx.app.exit();
 		}
 		
-		camera.translate( -1f, 0);
-		camera.update();
-		
 		Gdx.gl.glClearColor( 0.5f, 0.5f, 0.5f , 1);
 		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
-		batch.setProjectionMatrix(camera.combined);
-		shapeRenderer.setProjectionMatrix(camera.combined);
-
+		
 		screenManager.update();
 		screenManager.draw();
 	}
