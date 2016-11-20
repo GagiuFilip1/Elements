@@ -40,6 +40,7 @@ public class LoadingScreen implements IScreen {
 	private void onLoaded( Main _reference )
 	{
 		_reference.gameRegistry.onAssetsLoaded( _reference.assetManager );
+		_reference.screenManager.onAssetsLoaded();
 		//move to the next screen
 		_reference.screenManager.queueScreen( _reference.screenManager.gameScreen );
 	}

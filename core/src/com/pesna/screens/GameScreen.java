@@ -31,6 +31,11 @@ public class GameScreen implements IScreen {
 		objects.add(player);
 	}
 	
+	public void onAssetsLoaded()
+	{
+		((LevelRenderer)levelRenderer).onAssetsLoaded();
+	}
+	
 	public void update( Main _reference )
 	{
 		//TODO : Which is the most optimized way to cycle in an ArrayList?

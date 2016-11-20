@@ -14,7 +14,7 @@ public class ScreenManager {
 	public IScreen queuedScreen;//This variable ensures correct screen-changing
 	private final Main reference;
 	
-	public final IScreen loadingScreen, errorScreen, gameScreen;
+	public IScreen loadingScreen, errorScreen, gameScreen;
 	
     
 	public ScreenManager( Main _reference )
@@ -30,6 +30,11 @@ public class ScreenManager {
 	
 	public void draw(){currentScreen.draw(reference); currentScreen = queuedScreen;}
 	public void update(){currentScreen.update(reference);}
+	
+	public void onAssetsLoaded()
+	{
+		((GameScreen)gameScreen).onAssetsLoaded();
+	}
 	
 	public void queueScreen( IScreen newScreen ){queuedScreen = newScreen;}
 }

@@ -25,7 +25,6 @@ public class AnimationManager {
 	public HashMap <String,Animation> animations = new HashMap<String,Animation>();
 
 	public Animation stay,attack,fall,walk;
-	//public Animation def;
 	
 	public AnimationManager(Main mainClass)
 	{
@@ -35,31 +34,6 @@ public class AnimationManager {
 	
 	private void init()
 	{
-		/*
-		Pixmap pixmap = new Pixmap(256,128, Pixmap.Format.RGBA8888);
-        
-        //Fill it red
-        pixmap.setColor(Color.RED);
-        pixmap.fill();
-        
-        //Draw two lines forming an X
-        pixmap.setColor(Color.BLACK);
-        pixmap.drawLine(0, 0, pixmap.getWidth()-1, pixmap.getHeight()-1);
-        pixmap.drawLine(0, pixmap.getHeight()-1, pixmap.getWidth()-1, 0);
-        
-        //Draw a circle about the middle
-        pixmap.setColor(Color.YELLOW);
-        pixmap.drawCircle(pixmap.getWidth()/2, pixmap.getHeight()/2, pixmap.getHeight()/2 - 1);
-        
-        Texture tex = new Texture(pixmap);
-        
-        TextureRegion region = new TextureRegion(tex);
-        
-        def = new Animation ( 1f, region );
-		
-		*/
-		//AnimationLoader loader = new AnimationLoader ( attack, "attack", 1, 1f, "player" );
-		//loaders.add(loader);
 		loaders.add( new AnimationLoader ( "attack", "player", 3, 0.2f) );
 		loaders.add( new AnimationLoader ( "fall", "player", 4, 1f ) );
 		loaders.add( new AnimationLoader ( "walk", "player", 5, 0.125f ) );

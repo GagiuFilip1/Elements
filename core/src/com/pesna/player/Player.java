@@ -47,13 +47,13 @@ public class Player extends ScreenObject {
 		
 		if ( Gdx.input.isKeyPressed(Keys.A))
 		{
-			x -= 8;
+			x -= 3;
 			flip = true;
 			animation = reference.gameRegistry.animationManager.walk;
 		}
 		else if ( Gdx.input.isKeyPressed(Keys.D))
 		{
-			x += 8;
+			x += 3;
 			flip = false;
 			animation = reference.gameRegistry.animationManager.walk;
 		}
@@ -102,3 +102,22 @@ public class Player extends ScreenObject {
 		batch.end();
 	}
 }
+/*
+//GuiHandler
+//IGuiObject -> Obiecte GUI
+//
+// Dialogues
+// assets/dialogues/0.txt ; assets/dialogues/1.txt; assets/dialogues/2.txt
+// 
+ * 
+ * Main Menu
+ * Butoane
+ * GUI Elements - Buttons, Labels, ...
+ * 
+ * LogHelper, - log files..
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
