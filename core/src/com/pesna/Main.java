@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.pesna.init.GameRegistry;
 import com.pesna.init.ScreenManager;
+import com.pesna.player.Player;
 
 
 public class Main extends ApplicationAdapter {
@@ -20,6 +21,7 @@ public class Main extends ApplicationAdapter {
 	public OrthographicCamera camera;
 	public ShapeRenderer shapeRenderer;
 	
+	public Player player;
 	public ScreenManager screenManager;
 	public GameRegistry gameRegistry;
 	
@@ -34,6 +36,8 @@ public class Main extends ApplicationAdapter {
 		//camera.setToOrtho(false,1920,1080);
 		assetManager = new AssetManager();
 		shapeRenderer = new ShapeRenderer();
+		
+		player = new Player( this );
 		
 		gameRegistry = new GameRegistry(this);
 		screenManager = new ScreenManager(this);

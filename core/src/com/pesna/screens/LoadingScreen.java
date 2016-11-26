@@ -30,7 +30,6 @@ public class LoadingScreen implements IScreen {
 		_reference.shapeRenderer.setColor(35/255f, 200/255f, 0f, 1f);
 		_reference.shapeRenderer.rect( (lborder*gwidth), (gheight-lheight)/2, progress*gwidth*(1f-2f*lborder), lheight );
 		_reference.shapeRenderer.end();
-		
 	}
 	
 	/**
@@ -39,8 +38,7 @@ public class LoadingScreen implements IScreen {
 	 */
 	private void onLoaded( Main _reference )
 	{
-		_reference.gameRegistry.onAssetsLoaded( _reference.assetManager );
-		_reference.screenManager.onAssetsLoaded();
+		_reference.gameRegistry.onAssetsLoaded( _reference );
 		//move to the next screen
 		_reference.screenManager.queueScreen( _reference.screenManager.gameScreen );
 	}

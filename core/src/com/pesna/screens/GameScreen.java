@@ -3,11 +3,11 @@ package com.pesna.screens;
 import java.util.ArrayList;
 
 import com.pesna.Main;
+import com.pesna.entities.EnemyObject;
 import com.pesna.gui.GuiHealthbar;
 import com.pesna.gui.GuiObject;
 import com.pesna.objects.LevelRenderer;
 import com.pesna.objects.ScreenObject;
-import com.pesna.player.Player;
 
 public class GameScreen implements IScreen {
 	public ArrayList<ScreenObject> objects = new ArrayList<ScreenObject>();
@@ -23,12 +23,14 @@ public class GameScreen implements IScreen {
 	public GameScreen( Main _reference )
 	{
 		healthBar = new GuiHealthbar();
-		player = new Player( _reference );
+		player = _reference.player;
 		levelRenderer = new LevelRenderer( _reference );
 		
 		guiObjects.add( healthBar );
 		objects.add(levelRenderer);
 		objects.add(player);
+		
+		objects.add( new EnemyObject ( _reference, 300, 0 ) );
 	}
 	
 	public void onAssetsLoaded()

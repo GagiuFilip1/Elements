@@ -21,18 +21,19 @@ public class ScreenManager {
 	{
 		reference = _reference;
 		loadingScreen = new LoadingScreen();
-		errorScreen = new ErrorScreen();
-		gameScreen = new GameScreen(_reference);
-		
 		currentScreen = loadingScreen; // You start with the loading screen
 		queuedScreen = currentScreen;
 	}
 	
+	
 	public void draw(){currentScreen.draw(reference); currentScreen = queuedScreen;}
 	public void update(){currentScreen.update(reference);}
 	
-	public void onAssetsLoaded()
+	public void onAssetsLoaded( Main _reference )
 	{
+		errorScreen = new ErrorScreen();
+		gameScreen = new GameScreen(_reference);
+		
 		((GameScreen)gameScreen).onAssetsLoaded();
 	}
 	

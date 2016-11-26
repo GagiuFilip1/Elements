@@ -12,10 +12,10 @@ import com.pesna.objects.ScreenObject;
 public class Player extends ScreenObject {
 	boolean isVisible, isInteractive;
 	
-	public int x,y;
+	public int x,y,hp;
 	float delta;
 	boolean flip;
-	Animation animation;
+	public Animation animation;
 	Main reference;
 	
 	private final float gravity = 0.9f;
@@ -28,6 +28,7 @@ public class Player extends ScreenObject {
 		y = 0;
 		delta = 0;
 		flip = false;
+		hp = 100;
 	}
 	
 	public void update( Main _reference )
@@ -101,22 +102,77 @@ public class Player extends ScreenObject {
 		//batch.draw( region, x, y);
 		batch.end();
 	}
+	
+	public void TakeDamage( int damage )
+	{
+		hp -= damage;
+		//In case the player dies..
+		/*
+		 * if hp < 0 then
+		 *  player.dies()
+		 * end
+		 * 
+		 */
+	}
 }
-/*
-//GuiHandler
-//IGuiObject -> Obiecte GUI
-//
-// Dialogues
-// assets/dialogues/0.txt ; assets/dialogues/1.txt; assets/dialogues/2.txt
-// 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Code Cleaning :
+ * -Implement a global way to call onAssetsLoaded
+ * -LogHelper -> Creates log files and logs debug data into console
  * 
- * Main Menu
- * Butoane
- * GUI Elements - Buttons, Labels, ...
+ * -Reformat the LoadingScreen + GameRegistry :
+ * The loadingScreen will be instatied independently from the screen manager constructor
+ * gameRegistry will ask the assetManager to .load() all the textures needed in the game
+ * the loadingScreen will load everything needed in the AssetManager then
+ * proceed to the next step -> create gamescreens, items, bla bla bla
+ * everything that needs a texture
  * 
- * LogHelper, - log files..
+ * GUIHandler in the ScreenManager ( InputProcessorMultiplexer )
+ * 
+ * GUI objects:
+ * -HealthMeter / HealthBar / HealthIndicator
+ * -CoinsIndicator
+ * -GUIInventory
+ * -PauseMenu
+ * -Buttons
+ * -Labels ( child of button )
+ * -GUIDialogue
+ * -Stats? .. combine it with inventory?
+ * 
+ * Visuals :
+ * -Day&Night ? ( Need GLSL's for this one )
+ * -Cutscene animations ( is the designer busy? )
+ * -16:9 film cutting black bars?
  * 
  * 
+ * Sounds:
+ * -Attack sounds ( Player + Monsters )
+ * -Narated Dialogue?
+ * 
+ * Logic :
+ * -SaveHandler / SaveManager ( MTA:SA style? )
+ * -Obstacles / Pickups / Interiors??
+ * 
+ * MainMenu
+ * -Play -> screenManager.queueScreen(screenManager.gameScreen);
+ * -Options -> Difficulty? | SFX / Music enabled | Day&Night Cycle |
+ * -Credits -> This is just sexy to think about.
+ * -Exit
  * 
  * 
  * 

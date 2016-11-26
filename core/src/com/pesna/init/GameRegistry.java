@@ -1,6 +1,6 @@
 package com.pesna.init;
 
-import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.pesna.Main;
 
 public class GameRegistry {
@@ -15,13 +15,21 @@ public class GameRegistry {
 		itemManager = new ItemManager( reference );
 		animationManager = new AnimationManager( reference );
 		levelManager = new LevelManager( reference );
+		
+		
+		
+		reference.assetManager.load("ItemsSprites/rock.png", Texture.class );
 	}
 	
-	public void onAssetsLoaded( AssetManager assetManager )
+	public void onAssetsLoaded( Main reference )
 	{
-		itemManager.assignTextures( assetManager ); // assign textures to each item
-		animationManager.assignTextures( assetManager );
-		levelManager.assignTextures( assetManager );
+		//Replace those assignTextures with the constructor.. for some cases TODO
+		itemManager.assignTextures( reference.assetManager ); // assign textures to each item
+		animationManager.assignTextures( reference.assetManager );
+		levelManager.assignTextures( reference.assetManager );
+		
+		//At last
+		reference.screenManager.onAssetsLoaded( reference );
 	}
 	
 	
