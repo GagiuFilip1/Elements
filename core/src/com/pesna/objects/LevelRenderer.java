@@ -2,22 +2,26 @@ package com.pesna.objects;
 
 import com.pesna.Main;
 import com.pesna.init.LevelManager;
+import com.pesna.levels.ForestLevel;
 import com.pesna.player.Player;
 
-public class LevelRenderer extends ScreenObject {
-	Player player;
+public class LevelRenderer implements ScreenObject {
 	LevelManager levelManager;
 	ParallaxLoop platformLoop,backgroundLoop;
+	private ForestLevel forestLevel;
 	
 	public LevelRenderer( Main _reference )
 	{
+		forestLevel = new ForestLevel(_reference);
 		levelManager = _reference.gameRegistry.levelManager;
 	}
 	
 	public void onAssetsLoaded()
 	{
 		platformLoop = new ParallaxLoop(0,-levelManager.platform.getHeight(),0f,levelManager.platform);
-		backgroundLoop = new ParallaxLoop(0,0,0.9f,levelManager.background);
+		backgroundLoop = new ParallaxLoop(500,0,0.9f,levelManager.background);
+		
+		
 	}
 	
 	public void draw( Main _reference )
@@ -25,6 +29,9 @@ public class LevelRenderer extends ScreenObject {
 		_reference.batch.begin();
 		platformLoop.draw(_reference.camera.position, _reference.batch);
 		backgroundLoop.draw(_reference.camera.position, _reference.batch);
+		forestLevel.draw(_reference);
+		
+		
 		_reference.batch.end();
 	}
 	public void update( Main _reference )

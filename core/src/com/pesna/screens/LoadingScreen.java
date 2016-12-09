@@ -3,6 +3,7 @@ package com.pesna.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.pesna.Main;
+import com.pesna.objects.ScreenObject;
 
 public class LoadingScreen implements IScreen {
 	
@@ -16,7 +17,12 @@ public class LoadingScreen implements IScreen {
 			onLoaded( _reference );
 		}
 	}
-	
+
+	@Override
+	public void ForceAdd(ScreenObject newObject) {
+
+	}
+
 	public void draw( Main _reference )
 	{
 		_reference.batch.setProjectionMatrix(_reference.camera.combined);
@@ -40,6 +46,6 @@ public class LoadingScreen implements IScreen {
 	{
 		_reference.gameRegistry.onAssetsLoaded( _reference );
 		//move to the next screen
-		_reference.screenManager.queueScreen( _reference.screenManager.gameScreen );
+		_reference.screenManager.queueScreen( _reference.screenManager.menuScreen );
 	}
 }

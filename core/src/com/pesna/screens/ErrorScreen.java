@@ -3,6 +3,7 @@ package com.pesna.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.pesna.Main;
+import com.pesna.objects.ScreenObject;
 
 public class ErrorScreen implements IScreen {
 
@@ -28,4 +29,9 @@ public class ErrorScreen implements IScreen {
      * Called in the screen manager ( via main loop ) for update.
      */
 	public void update( Main _reference ){}
+
+	@Override
+	public void ForceAdd(ScreenObject newObject) {
+
+	}
 }

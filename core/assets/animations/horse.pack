@@ -1,0 +1,33 @@
+
+horse.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+hwalk0
+  rotate: false
+  xy: 1, 245
+  size: 319, 242
+  orig: 319, 242
+  offset: 0, 0
+  index: -1
+hwalk1
+  rotate: false
+  xy: 1, 1
+  size: 319, 242
+  orig: 319, 242
+  offset: 0, 0
+  index: -1
+hwalk2
+  rotate: false
+  xy: 322, 245
+  size: 319, 242
+  orig: 319, 242
+  offset: 0, 0
+  index: -1
+hstay0
+  rotate: false
+  xy: 322, 6
+  size: 265, 237
+  orig: 265, 237
+  offset: 0, 0
+  index: -1

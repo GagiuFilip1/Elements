@@ -10,9 +10,8 @@ public class LevelManager {
 	public LevelManager ( Main _reference )
 	{
 		//Load map + parallaxing factors + loops... bla bla bla
-		this.registerTextures( _reference.assetManager );
+		registerTextures( _reference.assetManager );
 	}
-	
 	private void registerTextures( AssetManager assetManager )
 	{
 		assetManager.load("level/platform.png", Texture.class);

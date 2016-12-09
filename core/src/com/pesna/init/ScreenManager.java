@@ -1,20 +1,18 @@
 package com.pesna.init;
 
-import java.util.ArrayList;
-
 import com.pesna.Main;
 import com.pesna.screens.ErrorScreen;
 import com.pesna.screens.GameScreen;
 import com.pesna.screens.IScreen;
 import com.pesna.screens.LoadingScreen;
+import com.pesna.screens.MenuScreen;
 
 public class ScreenManager {
-	public ArrayList<IScreen> screens = new ArrayList<IScreen>();
 	private IScreen currentScreen;
-	public IScreen queuedScreen;//This variable ensures correct screen-changing
+	private IScreen queuedScreen;//This variable ensures correct screen-changing
 	private final Main reference;
 	
-	public IScreen loadingScreen, errorScreen, gameScreen;
+	public IScreen loadingScreen, errorScreen, gameScreen, menuScreen;
 	
     
 	public ScreenManager( Main _reference )
@@ -31,6 +29,7 @@ public class ScreenManager {
 	
 	public void onAssetsLoaded( Main _reference )
 	{
+		menuScreen = new MenuScreen( _reference );
 		errorScreen = new ErrorScreen();
 		gameScreen = new GameScreen(_reference);
 		

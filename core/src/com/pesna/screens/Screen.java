@@ -28,6 +28,11 @@ public class Screen implements IScreen {
 		}
 		it = null;
 	}
-	
+
+	@Override
+	public void ForceAdd(ScreenObject newObject) {
+
+	}
+
 	//AssetManager
 }

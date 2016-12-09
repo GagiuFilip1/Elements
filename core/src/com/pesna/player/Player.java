@@ -9,16 +9,16 @@ import com.badlogic.gdx.math.Vector3;
 import com.pesna.Main;
 import com.pesna.objects.ScreenObject;
 
-public class Player extends ScreenObject {
+public class Player implements ScreenObject {
 	boolean isVisible, isInteractive;
 	
-	public int x,y,hp;
+	public int x,y,hp , range;
 	float delta;
 	boolean flip;
 	public Animation animation;
 	Main reference;
 	
-	private final float gravity = 0.9f;
+	public final float gravity = 0.9f , speed = 300;
 	private float vspeed = 0;
 	
 	public Player( Main _reference )
@@ -29,6 +29,7 @@ public class Player extends ScreenObject {
 		delta = 0;
 		flip = false;
 		hp = 100;
+		range = 800;
 	}
 	
 	public void update( Main _reference )
@@ -44,22 +45,22 @@ public class Player extends ScreenObject {
 	
 	private void control()
 	{
-		animation = reference.gameRegistry.animationManager.stay;
+		animation = reference.gameRegistry.animationManager.hstay;
 		
 		if ( Gdx.input.isKeyPressed(Keys.A))
 		{
-			x -= 3;
+			x -= speed * Gdx.graphics.getDeltaTime();
 			flip = true;
-			animation = reference.gameRegistry.animationManager.walk;
+			animation = reference.gameRegistry.animationManager.hwalk;
 		}
+
 		else if ( Gdx.input.isKeyPressed(Keys.D))
 		{
-			x += 3;
+			x += speed * Gdx.graphics.getDeltaTime();
 			flip = false;
-			animation = reference.gameRegistry.animationManager.walk;
+			animation = reference.gameRegistry.animationManager.hwalk;
 		}
-		
-		
+
 		if ( Gdx.input.isKeyJustPressed(Keys.SPACE) && y == 0 )
 		{
 			vspeed = +15;

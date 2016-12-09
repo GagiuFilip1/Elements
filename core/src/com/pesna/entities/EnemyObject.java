@@ -15,9 +15,11 @@ public class EnemyObject extends EnemyStructure
 {
 	private Main reference;
 	boolean flip;
+    private AITactics thisLogic;
 	public Animation animation;
-    public int x , y ,ATTACK_SPEED,SPEED ,auxX;
-    private float delta = 0.0f , FollowRange = 400, AttackRange = 25, HP ,ATTACK_DAMANGE;
+    public int ATTACK_SPEED,SPEED;
+    public float x ,y , auxX;
+    private float delta = 0.0f , FollowRange = 800, AttackRange = 25, HP ,ATTACK_DAMANGE;
     private boolean pause = false;
     private float counter = 0;
     public EnemyObject( Main _reference, int posX , int posY)
@@ -28,70 +30,78 @@ public class EnemyObject extends EnemyStructure
         HP = 100;
         ATTACK_DAMANGE = 30;
         ATTACK_SPEED = 3;
-        SPEED = 220;
+        SPEED = 200;
+        thisLogic = new AITactics(reference);
         animation = reference.gameRegistry.animationManager.stay;
     }
-    
     public void draw(Main main)
     {
-    	
 		SpriteBatch batch = main.batch;
-
 		delta += Gdx.graphics.getDeltaTime();
 		TextureRegion keyFrame = animation.getKeyFrame(delta,true);
 		batch.begin();
-		
 		if ( flip )
 			batch.draw( keyFrame, x+keyFrame.getRegionWidth()/2, y, -keyFrame.getRegionWidth(), keyFrame.getRegionHeight());
 		else
 			batch.draw( keyFrame, x-keyFrame.getRegionWidth()/2, y, keyFrame.getRegionWidth(), keyFrame.getRegionHeight());
-		//batch.draw( region, x, y);
 		batch.end();
     }
     public void update(Main main)
     {
-        EnemyLogic.get( main, this );
+        thisLogic.SetDefensive(1 , this);
+    }
+    @Override
+    public int GetPosition(int _x) {
+        switch (_x) {
+            case 1:
+                return (int)x;
+            case 2:
+                return (int)y;
+            default:
+                return 0;
+        }
     }
     @Override
     public void Attack(Player player)
     {
         if(IS_IN_RANGE(player, AttackRange) && !pause)
         {
-        	animation = reference.gameRegistry.animationManager.attack;
-        	if(Timer(ATTACK_SPEED))
+            if(Timer(ATTACK_SPEED))
             {
         		player.TakeDamage( (int) ATTACK_DAMANGE );
             }
-        	if ( x - player.x <= 0 )
-        		flip = false;
-        	else
-        		flip = true;
+           flip = !(x - player.x <= 0);
+            animation = reference.gameRegistry.animationManager.attack;
         }
     }
+
     @Override
     public void Follow(Player player)
     {
-        if(IS_IN_RANGE(player, FollowRange) && !pause)
+        if(IS_IN_RANGE(player, FollowRange) && !pause && !IS_IN_RANGE(player, AttackRange))
         {
             if( player.x - x > 10 )
             {
+
                 x += SPEED * Gdx.graphics.getDeltaTime();
                 auxX = x;
             }
             else if(player.x - x < -10)
             {
+
                 x -= SPEED * Gdx.graphics.getDeltaTime();
                 auxX = x;
             }
-        	if ( x - player.x <= 0 )
-        		flip = false;
-        	else
-        		flip = true;
+           flip = !(x - player.x <= 0);
             animation = reference.gameRegistry.animationManager.walk;
         }
         else if (pause)
         {
             fall(player);
+        }
+        else
+        {
+            animation = reference.gameRegistry.animationManager.stay;
         }
     }
     @Override
@@ -109,10 +119,7 @@ public class EnemyObject extends EnemyStructure
                 x += SPEED * Gdx.graphics.getDeltaTime();
                 auxX = x;
             }
-        	if ( x - player.x >= 0 )
-        		flip = false;
-        	else
-        		flip = true;
+           flip = !(x - player.x >= 0);
             animation = reference.gameRegistry.animationManager.walk;
         }
         else if (pause)
@@ -128,7 +135,7 @@ public class EnemyObject extends EnemyStructure
 
     private boolean IS_IN_RANGE(Player player, float range)
     {
-        return Math.abs(player.x - x) <= range;
+        return Math.abs(Math.abs(player.x) - x) <= range;
     }
     
     private boolean Timer(int time)
@@ -136,7 +143,7 @@ public class EnemyObject extends EnemyStructure
         counter += Gdx.graphics.getDeltaTime();
         return counter > time;
     }
-    void TakeDamange(Player player)
+    public void TakeDamange(Player player)
     {
             if(IS_ATTACKED() && IS_IN_RANGE(player, AttackRange) && !pause)
             {
@@ -170,6 +177,30 @@ public class EnemyObject extends EnemyStructure
             animation = reference.gameRegistry.animationManager.fall;
         }
     }
+
+    @Override
+    public void SetAnimation(Animation _animation)
+    {
+        animation = _animation;
+    }
+
+    @Override
+    public void SetBuff(String statName, float AddValue)
+    {
+        if(statName.equals("Speed"))
+        {
+            SPEED += AddValue;
+        }
+        else if(statName.equals("Attack"))
+        {
+            ATTACK_DAMANGE += AddValue;
+        }
+        else if(statName.equals("AttackSpeed"))
+        {
+            ATTACK_SPEED += AddValue;
+        }
+    }
+
     private boolean IS_ATTACKED()
     {
         return reference.player.animation == reference.gameRegistry.animationManager.attack;
