@@ -19,7 +19,8 @@ public class GameRegistry {
 		reference.assetManager.load("ItemsSprites/wall.png", Texture.class );
 		reference.assetManager.load("ItemsSprites/tree.PNG" , Texture.class);
 		reference.assetManager.load("ItemsSprites/grass.png" , Texture.class);
-		
+
+		reference.assetManager.load("ItemsSprites/talentsBack.png" , Texture.class);
 		reference.assetManager.load("menu/close0.png" , Texture.class);
 		reference.assetManager.load("menu/play0.png" , Texture.class);
 		reference.assetManager.load("menu/info0.png" , Texture.class);
@@ -29,6 +30,7 @@ public class GameRegistry {
 		reference.assetManager.load("menu/info1.png" , Texture.class);
 		reference.assetManager.load("menu/settings1.png" , Texture.class);
 		reference.assetManager.load("menu/backgr.png" , Texture.class);
+
 	}
 	public void onAssetsLoaded( Main reference )
 	{

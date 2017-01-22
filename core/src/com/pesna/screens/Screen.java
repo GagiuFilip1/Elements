@@ -1,10 +1,12 @@
 package com.pesna.screens;
 
+import com.pesna.entities.EnemyObject;
 import java.util.Iterator;
 
 import com.badlogic.gdx.utils.Array;
 import com.pesna.Main;
 import com.pesna.objects.ScreenObject;
+import java.util.LinkedList;
 
 public class Screen implements IScreen {
 	private Array<ScreenObject> objects = new Array<ScreenObject>();
@@ -30,8 +32,18 @@ public class Screen implements IScreen {
 	}
 
 	@Override
-	public void ForceAdd(ScreenObject newObject) {
+	public void SpellForceAdd(ScreenObject newObject) {
 
+	}
+
+	@Override
+	public void ObjectForceAdd(ScreenObject newObject) {
+
+	}
+
+	@Override
+	public LinkedList<EnemyObject> GetLevelEnemy() {
+		return null;
 	}
 
 	//AssetManager

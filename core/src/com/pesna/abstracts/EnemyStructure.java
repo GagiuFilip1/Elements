@@ -18,5 +18,7 @@ public abstract class EnemyStructure implements ScreenObject
     public abstract void fall(Player player);
     public abstract void SetAnimation(Animation animation);
     public abstract void SetBuff(String statName , float AddValue);
-    public abstract int GetAtkSpeed();
+    public abstract float GetAtkSpeed();
+    public abstract boolean IS_Dead();
+
 }
