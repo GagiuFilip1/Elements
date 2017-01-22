@@ -19,6 +19,7 @@ public abstract class Item { //ID + Textura + dropchance...
 	{
 		texture = tex;
 	}
+	
 }
 
 

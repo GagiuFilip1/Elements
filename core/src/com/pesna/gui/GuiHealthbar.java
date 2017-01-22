@@ -23,7 +23,7 @@ public class GuiHealthbar extends GuiObject{
 		_reference.shapeRenderer.rect( -Gdx.graphics.getWidth()/2, -Gdx.graphics.getHeight()/2, 50, 50 );
 		
 		_reference.shapeRenderer.end();
-		//_reference.shapeRenderer.setProjectionMatrix(_reference.camera.combined);
+		_reference.shapeRenderer.setProjectionMatrix(_reference.camera.combined);
 	}
 	public void update( Main _reference )
 	{

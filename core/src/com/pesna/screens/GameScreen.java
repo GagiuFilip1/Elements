@@ -1,54 +1,40 @@
 package com.pesna.screens;
 
-import com.pesna.entities.EnemyObject;
-import com.pesna.levels.ForestLevel;
-import com.pesna.levels.Spawner;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 import com.pesna.Main;
 import com.pesna.abstracts.SpellObject;
+import com.pesna.entities.EnemyObject;
+import com.pesna.gui.GuiHealthbar;
 import com.pesna.gui.GuiObject;
 import com.pesna.objects.LevelRenderer;
 import com.pesna.objects.ScreenObject;
-import java.util.LinkedList;
 
 public class GameScreen implements IScreen {
 	public ArrayList<ScreenObject> objects= new ArrayList<ScreenObject>();
 	public ArrayList<ScreenObject> spellObjects= new ArrayList<ScreenObject>();
 	public ArrayList<GuiObject> guiObjects = new ArrayList<GuiObject>();
-	public LinkedList<EnemyObject> enemyList = new LinkedList<EnemyObject>();
-	public Spawner leftSpawner;
 	
 	//TODO : modify the class so the ProjectionMatrix is set only twice per rendering cycle
 	// once in the player's class update
 	// and once in the draw() function of this class, set it to the camera.projection matrix.
-
+	
+	public GuiObject healthBar;
 	public ScreenObject levelRenderer, player;
 	
 	public GameScreen( Main _reference )
 	{
-
-
+		healthBar = new GuiHealthbar();
 		player = _reference.player;
 		levelRenderer = new LevelRenderer( _reference );
-
+		
+		guiObjects.add( healthBar );
 		objects.add(levelRenderer);
 		objects.add(player);
-		//leftSpawner = new Spawner(_reference);
-	//	leftSpawner.SetSpawnTime( 8.5f);
-	//	objects.add(leftSpawner);
-		enemyList.add(new EnemyObject(_reference , 1000,0));
-		enemyList.add(new EnemyObject(_reference , 2000,0));
-		enemyList.add(new EnemyObject(_reference , 2500,0));
-		enemyList.add(new EnemyObject(_reference , 3000,0));
-		enemyList.add(new EnemyObject(_reference , 3300,0));
-		enemyList.add(new EnemyObject(_reference , 3500,0));
-		for (EnemyObject enemyObject : enemyList) {
-			objects.add(enemyObject);
-		}
-
-		//objects.add(levelRenderer.)
+		objects.add( new EnemyObject ( _reference, 900, 0 ) );
 	}
 	
 	public void onAssetsLoaded()
@@ -58,23 +44,12 @@ public class GameScreen implements IScreen {
 	
 	public void update( Main _reference )
 	{
-
 		//TODO : Which is the most optimized way to cycle in an ArrayList?
-		try {
-
-			for (ScreenObject object : objects) {
-				object.update(_reference);
-			}
-		/*	if(leftSpawner.StartSpawnMob())
-			{
-				objects.add(new EnemyObject(_reference , (int)leftSpawner.x, (int)leftSpawner.y));
-			}
-			*/
-		}
-		catch (ConcurrentModificationException ignored)
+		for ( ScreenObject object : objects )
 		{
-
+			object.update( _reference );
 		}
+
 		try {
 			for (ScreenObject object : spellObjects) {
 				object.update(_reference);
@@ -92,7 +67,6 @@ public class GameScreen implements IScreen {
 		{
 			object.update( _reference );
 		}
-		//leftSpawner.SetPosition(_reference.player.x + 1000 , 0);
 	}
 	
 	public void draw( Main _reference )
@@ -107,19 +81,16 @@ public class GameScreen implements IScreen {
 		
 		
 		//REAL WORLD OBJECTS GO IN HERE
-		try {
-			for (ScreenObject object : objects) {
-				object.draw(_reference);
-			}
-
-			for (ScreenObject object : spellObjects) {
-				object.draw(_reference);
-			}
-		}
-		catch (ConcurrentModificationException ignored)
+		for ( ScreenObject object : objects )
 		{
-
+			object.draw( _reference );
 		}
+
+		for (ScreenObject object : spellObjects)
+		{
+			object.draw(_reference);
+		}
+
 		//GUI GOES IN HERE
 		_reference.shapeRenderer.setProjectionMatrix(_reference.camera.projection);
 		_reference.shapeRenderer.setProjectionMatrix(_reference.camera.projection);
@@ -128,19 +99,8 @@ public class GameScreen implements IScreen {
 			object.draw( _reference );
 		}
 	}
-	public void SpellForceAdd(ScreenObject newObject)
+	public void ForceAdd(ScreenObject newObject)
 	{
 		spellObjects.add(newObject);
 	}
-
-	public void ObjectForceAdd(ScreenObject newObject)
-	{
-		objects.add(newObject);
-	}
-
-	@Override
-	public LinkedList<EnemyObject> GetLevelEnemy() {
-		return enemyList;
-	}
-
 }

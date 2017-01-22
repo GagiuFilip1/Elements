@@ -45,18 +45,15 @@ public class Rush implements SpellObject
       {
          thisAI.SetBuff("Speed" , 150 * Gdx.graphics.getDeltaTime());
          TotalAdded += 150 *Gdx.graphics.getDeltaTime();
-
+         System.out.println(TotalAdded);
          if(IS_CLOSE())
-         {
-            thisAI.SetBuff("Speed", -TotalAdded);
-
-         }
+            thisAI.SetBuff("Speed" , -TotalAdded);
       }
       if(Destroy())
       {
-
-         thisAI.SetBuff("Speed" , -TotalAdded);
          destroyed = true;
+         System.out.println("yey");
+         thisAI.SetBuff("Speed" , -TotalAdded);
       }
       MoveTo();
    }
