@@ -1,6 +1,5 @@
 package com.pesna.screens;
 
-import com.pesna.entities.EnemyObject;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
@@ -9,7 +8,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.pesna.Main;
 import com.pesna.gui.GuiButton;
 import com.pesna.objects.ScreenObject;
-import java.util.LinkedList;
 
 public class MenuScreen implements IScreen, InputProcessor {
 	public ArrayList<GuiButton> buttons = new ArrayList<GuiButton>();
@@ -55,21 +53,11 @@ public class MenuScreen implements IScreen, InputProcessor {
 		
 		_reference.batch.end();
 	}
-	public void SpellForceAdd(ScreenObject newObject)
+	public void ForceAdd(ScreenObject newObject)
 	{
 		
 	}
-
-	@Override
-	public void ObjectForceAdd(ScreenObject newObject) {
-
-	}
-
-	@Override
-	public LinkedList<EnemyObject> GetLevelEnemy() {
-		return null;
-	}
-
+	
 	public boolean keyDown ( int keycode )
 	{
 		return false;
