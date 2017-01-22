@@ -129,11 +129,11 @@ public class ThrowRock implements SpellObject
             reference.player.TakeDamage(20);
             stop = true;
         }
-        if(y <= -30)
+        if(y <= -20)
         {
             stop = true;
         }
-        return IS_CLOSE() || y <= -30;
+        return IS_CLOSE() || y <= -20;
     }
     private boolean IS_CLOSE()
     {

@@ -3,7 +3,9 @@ package com.pesna.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.pesna.Main;
+import com.pesna.entities.EnemyObject;
 import com.pesna.objects.ScreenObject;
+import java.util.LinkedList;
 
 public class LoadingScreen implements IScreen {
 	
@@ -19,8 +21,18 @@ public class LoadingScreen implements IScreen {
 	}
 
 	@Override
-	public void ForceAdd(ScreenObject newObject) {
+	public void SpellForceAdd(ScreenObject newObject) {
 
+	}
+
+	@Override
+	public void ObjectForceAdd(ScreenObject newObject) {
+
+	}
+
+	@Override
+	public LinkedList<EnemyObject> GetLevelEnemy() {
+		return null;
 	}
 
 	public void draw( Main _reference )

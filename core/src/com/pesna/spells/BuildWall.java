@@ -104,9 +104,9 @@ public class BuildWall implements SpellObject
         {
             if(reference.player.y < 40) {
                 if (IS_ONLEFT())
-                    reference.player.x -= reference.player.speed * Gdx.graphics.getDeltaTime();
+                    reference.player.x -= reference.player.SPEED * Gdx.graphics.getDeltaTime();
                 if (IS_ONRIGHT())
-                    reference.player.x += (reference.player.speed + 5) * Gdx.graphics.getDeltaTime();
+                    reference.player.x += (reference.player.SPEED + 5) * Gdx.graphics.getDeltaTime();
             }
         }
     }

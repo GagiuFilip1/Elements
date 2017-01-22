@@ -91,15 +91,9 @@ public class AITactics
     {
         int DISTANCE;
         DISTANCE = Math.abs(reference.player.x - npc.GetPosition(1));
-        System.out.println(countthis);
         switch (index) {
             case 1:
-                if(DISTANCE < 800 && DISTANCE > 30 && countthis < 1) {
-                    spellLogic.CastSpell(new Rush(reference,npc));
-                    npc.Follow(reference.player);
-                }
-                else if(countthis >= 1)
-                {
+                if(DISTANCE < 800 && DISTANCE > 80) {
                     npc.Attack(reference.player);
                     npc.fall(reference.player);
                     npc.Follow(reference.player);

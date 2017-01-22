@@ -18,7 +18,7 @@ public class SpellLogic
 
     private void LoadSpell(SpellObject spell)
     {
-        reference.screenManager.gameScreen.ForceAdd(spell);
+        reference.screenManager.gameScreen.SpellForceAdd(spell);
     }
     public void CastSpell(SpellObject spell)
     {

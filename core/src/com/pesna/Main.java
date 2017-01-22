@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.pesna.init.GameRegistry;
 import com.pesna.init.ScreenManager;
 import com.pesna.player.Player;
+import java.io.IOException;
 
 
 public class Main extends ApplicationAdapter {
@@ -34,15 +35,20 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void create () {
+
 		batch = new  SpriteBatch();
 		camera = new OrthographicCamera(1280,720);
 		//viewport = new FitViewport(1920,1080, camera);
 		camera.setToOrtho(false,1920,1080);
 		assetManager = new AssetManager();
 		shapeRenderer = new ShapeRenderer();
-		
-		player = new Player( this );
-		
+
+		try {
+			player = new Player( this );
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		gameRegistry = new GameRegistry(this);
 		screenManager = new ScreenManager(this);
 		

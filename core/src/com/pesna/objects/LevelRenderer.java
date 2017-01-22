@@ -8,7 +8,7 @@ import com.pesna.player.Player;
 public class LevelRenderer implements ScreenObject {
 	LevelManager levelManager;
 	ParallaxLoop platformLoop,backgroundLoop;
-	private ForestLevel forestLevel;
+	public ForestLevel forestLevel;
 	
 	public LevelRenderer( Main _reference )
 	{
@@ -20,8 +20,6 @@ public class LevelRenderer implements ScreenObject {
 	{
 		platformLoop = new ParallaxLoop(0,-levelManager.platform.getHeight(),0f,levelManager.platform);
 		backgroundLoop = new ParallaxLoop(500,0,0.9f,levelManager.background);
-		
-		
 	}
 	
 	public void draw( Main _reference )
